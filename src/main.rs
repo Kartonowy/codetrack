@@ -1,10 +1,12 @@
 use anyhow::Result;
 use std::{collections::HashMap, ffi::OsStr, fs::{read, read_dir}};
 
+#[derive(Debug)]
 struct Config<'a> {
     forbidden_paths: Vec<Option<&'a str>>,
     amount_of_files: HashMap<String, usize>,
-    filetypes_blacklist: Vec<&'a str>
+    filetypes_blacklist: Vec<&'a str>,
+    total_bytes: usize
 }
 
 fn main() -> Result<()> {
@@ -14,11 +16,12 @@ fn main() -> Result<()> {
         amount_of_files: HashMap::new(),
         filetypes_blacklist: vec!["json", "csproj", "zip", "png", "jpg", "targets", "docx", "txt",
         "props", "out", "cache", "sql", "md", "ttf", "gif", "yaml",
-        "lockb", "lock", "toml", "mod", "svg", "map", "sum"]
+        "lockb", "lock", "toml", "mod", "svg", "map", "sum"],
+        total_bytes: 0
     };
     println!("{}", path);
     let _ = recursively_read_dir(path, &mut config);
-    println!("{:#?}", config.amount_of_files);
+    println!("{:#?} {:?}", config.total_bytes, config.amount_of_files);
     Ok(())
 }
 
@@ -38,6 +41,7 @@ fn recursively_read_dir(path: &str, config: &mut Config) -> Result<()>{
 
             if !config.filetypes_blacklist.contains(&extension.as_str()) {
                 let amount = read(finding.path())?.len();
+                config.total_bytes += amount;
                 config.amount_of_files.insert(extension.clone(), amount + 
                                               if config.amount_of_files.contains_key(&extension.to_string()) { 
                                                   config.amount_of_files.get(&extension.to_string()).expect("not found").to_owned() 
