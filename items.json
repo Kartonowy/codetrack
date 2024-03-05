@@ -1,9 +1,119 @@
-{
-    "color": {
-        "blue": 69,
-        "green": 69,
-        "red": 69
+[
+    {
+        "ext": "go",
+        "name": "Golang",
+        "col": {
+            "r": 0,
+            "g": 173,
+            "b": 216
+        }
     },
-    "extension": "go",
-    "name": "golang"
-}
+    {
+        "ext": "rs",
+        "name": "Rust",
+        "col": {
+            "r": 222,
+            "g": 165,
+            "b": 132
+        }
+    },
+    {
+        "ext": "cpp",
+        "name": "C++",
+        "col": {
+            "r": 243,
+            "g": 75,
+            "b": 125
+        }
+    },
+    {
+        "ext": "c",
+        "name": "C",
+        "col": {
+            "r": 85,
+            "g": 85,
+            "b": 85
+        }
+    },
+    {
+        "ext": "cs",
+        "name": "C#",
+        "col": {
+            "r": 23,
+            "g": 134,
+            "b": 0
+        }
+    },
+    {
+        "ext": "js",
+        "name": "Javascript",
+        "col": {
+            "r": 241,
+            "g": 224,
+            "b": 90
+        }
+    },
+    {
+        "ext": "ts",
+        "name": "Typescript",
+        "col": {
+            "r": 49,
+            "g": 120,
+            "b": 198
+        }
+    },
+    {
+        "ext": "py",
+        "name": "Python",
+        "col": {
+            "r": 53,
+            "g": 114,
+            "b": 165
+        }
+    },
+    {
+        "ext": "html",
+        "name": "HTML",
+        "col": {
+            "r": 227,
+            "g": 76,
+            "b": 38
+        }
+    },
+    {
+        "ext": "css",
+        "name": "CSS",
+        "col": {
+            "r": 86,
+            "g": 61,
+            "b": 124
+        }
+    },
+    {
+        "ext": "svelte",
+        "name": "Svelte",
+        "col": {
+            "r": 255,
+            "g": 62,
+            "b": 0
+        }
+    },
+    {
+        "ext": "sh",
+        "name": "Bash",
+        "col": {
+            "r": 137,
+            "g": 224,
+            "b": 81
+        }
+    },
+    {
+        "ext": "php",
+        "name": "PHP",
+        "col": {
+            "r": 79,
+            "g": 93,
+            "b": 149
+        }
+    }
+]
