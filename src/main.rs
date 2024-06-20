@@ -35,6 +35,9 @@ fn main() -> Result<()> {
             Some("Debug"),
             Some("NoMachine"),
             Some("'Obsidian Vault'"),
+            Some(".svelte-kit"),
+            Some(".obsidian-kit"),
+            Some("fluttering")
         ],
         amount_of_files: HashMap::new(),
         filetypes_blacklist: vec![
@@ -45,12 +48,9 @@ fn main() -> Result<()> {
         total_bytes: 0,
     };
     let _ = recursively_read_dir(path, &mut config);
-    println!("{:#?} {:?}", config.total_bytes, config.amount_of_files);
-
     let items = read_to_string("items.json")?;
     let b: serde_json::Value = serde_json::from_str(&items)?;
     let mut languages: Vec<Language> = vec![];
-
     if let Some(langs) = b.as_array() {
         for c in langs {
             languages.push(Language {
@@ -68,9 +68,6 @@ fn main() -> Result<()> {
             })
         }
     }
-
-    println!("{:#?}", languages);
-
     print_bar(languages);
 
     Ok(())
@@ -78,15 +75,17 @@ fn main() -> Result<()> {
 
 fn print_bar(mut languages: Vec<Language>) {
     languages.sort_by(|a, b| {b.percentage.cmp(&a.percentage) });
-   for lang in &languages {
-        for i in 0..lang.percentage {
-            let x = "x".custom_color(lang.col);
+    for lang in &languages {
+        for _ in 0..lang.percentage {
+            let x = "\u{2588}".custom_color(lang.col);
             print!("{x}");
         }
-   } 
-   for lang in &languages[0..10] {
-        println!("{:?}", lang)
-   }
+    } 
+    println!("");
+    for lang in &languages[0..10] {
+        print!("{} {} {}%  ", "\u{2588}".custom_color(lang.col) ,lang.name, lang.percentage)
+    }
+    println!("\n");
 }
 
 fn recursively_read_dir(path: &str, config: &mut Config) -> Result<()> {
